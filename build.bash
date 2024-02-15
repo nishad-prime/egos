@@ -54,6 +54,5 @@ sudo mount dist/boot/boot.img dist/mnt
     set +e
     sudo cp -r dist/* dist/mnt/.
     set -e
-    sudo rsync -av --exclude='dist' dist/ dist/mnt/.
     sudo umount dist/mnt
 sudo rmdir dist/mnt
