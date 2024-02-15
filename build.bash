@@ -5,8 +5,8 @@
 set -e
 
 # Install the required packages
-apt-get update
-apt-get install -y\
+sudo apt-get update
+sudo apt-get install -y\
     curl\
     xz-utils\
     bzip2\
@@ -50,7 +50,7 @@ cd ..
 dd if=/dev/zero of=dist/boot/boot.img bs=1M count=64
 mkfs.ext4 dist/boot/boot.img
 mkdir -p dist/mnt
-mount dist/boot/boot.img dist/mnt
+sudo mount dist/boot/boot.img dist/mnt
     cp -r dist/* dist/mnt/.
-    umount dist/mnt
+    sudo umount dist/mnt
 rmdir dist/mnt
