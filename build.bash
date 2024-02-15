@@ -29,7 +29,7 @@ mkdir -p dist/boot
 
 # Download the kernel source
 wget https://www.kernel.org/pub/linux/kernel/v${LINUX_MAJOR}.x/linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}.tar.xz
-tar -xvf linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}.tar.xz
+tar -xf linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}.tar.xz
 cd linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}
     cp ../config/linux.config .config
     make -j$(nproc)
@@ -39,7 +39,7 @@ cd ..
 
 # Download the busybox source
 wget https://busybox.net/downloads/busybox-${BUSYBOX_MAJOR}.${BUSYBOX_MINOR}.${BUSYBOX_PATCH}.tar.bz2
-tar -xvf busybox-${BUSYBOX_MAJOR}.${BUSYBOX_MINOR}.${BUSYBOX_PATCH}.tar.bz2
+tar -xf busybox-${BUSYBOX_MAJOR}.${BUSYBOX_MINOR}.${BUSYBOX_PATCH}.tar.bz2
 cd busybox-${BUSYBOX_MAJOR}.${BUSYBOX_MINOR}.${BUSYBOX_PATCH}
     cp ../config/busybox.config .config
     make -j$(nproc)
