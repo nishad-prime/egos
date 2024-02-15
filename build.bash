@@ -47,7 +47,7 @@ cd busybox-${BUSYBOX_MAJOR}.${BUSYBOX_MINOR}.${BUSYBOX_PATCH}
 cd ..
 
 # Create the bootable image
-dd if=/dev/zero of=dist/boot/boot.img bs=1M count=64
+dd if=/dev/zero of=dist/boot/boot.img bs=256M count=64
 mkfs.ext4 dist/boot/boot.img
 mkdir -p dist/mnt
 sudo mount dist/boot/boot.img dist/mnt
