@@ -8,8 +8,5 @@ mount -t devtmpfs none /dev
 mount -t proc none /dev
 mount -t sysfs none /sys
 
-# Start shell
-/bin/sh
-
-# Shutdown the machine when shell is exited
-poweroff -f
+# Start shell with proper tty and power off support
+exec cttyhack sh
