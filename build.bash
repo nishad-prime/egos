@@ -50,12 +50,11 @@ cd busybox-${BUSYBOX_VERSION}
 cd ..
 
 # Create the initramfs
-sudo mount -t proc /proc initramfs/proc
-sudo mount -t sysfs /sys initramfs/sys
-sudo mount -o bind /dev initramfs/dev
-sudo mount -o bind /dev/pts initramfs/dev/pts
 cd initramfs
+    rm linuxrc # We'll be using a init sciprt instead
+    cp config/initramfs.sh init
     find . | cpio -H newc -o > ../iso/boot/initramfs.cpio
+cd ..
 
 # Install GRUB
 cp config/grub.cfg iso/boot/grub/grub.cfg
