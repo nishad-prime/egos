@@ -23,7 +23,8 @@ sudo apt-get install -y\
     libpng-dev\
     libfreetype-dev\
     git\
-    grub-common
+    grub-common\
+    mtools
 
 # Create the directory structure
 mkdir -p iso/boot/grub
