@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. config/config.bash
+. config.bash
 
 set -e
 
@@ -30,9 +30,9 @@ mkdir -p iso/boot/grub
 mkdir -p initramfs/{bin,sbin,etc,proc,sys,usr/{bin,sbin}}
 
 # Download the kernel source
-wget https://www.kernel.org/pub/linux/kernel/v${LINUX_MAJOR}.x/linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}.tar.xz
-tar -xf linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}.tar.xz
-cd linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}
+wget https://www.kernel.org/pub/linux/kernel/v${LINUX_MAJOR}.x/linux-${LINUX_VERSION}.tar.xz
+tar -xf linux-${LINUX_VERSION}.tar.xz
+cd linux-${LINUX_VERSION}
     make -j$(nproc) x86_64_defconfig
     cp ../config/linux.config .config
     make -j$(nproc) bzImage
@@ -41,9 +41,9 @@ cd linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}
 cd ..
 
 # Download the busybox source
-wget https://busybox.net/downloads/busybox-${BUSYBOX_MAJOR}.${BUSYBOX_MINOR}.${BUSYBOX_PATCH}.tar.bz2
-tar -xf busybox-${BUSYBOX_MAJOR}.${BUSYBOX_MINOR}.${BUSYBOX_PATCH}.tar.bz2
-cd busybox-${BUSYBOX_MAJOR}.${BUSYBOX_MINOR}.${BUSYBOX_PATCH}
+wget https://busybox.net/downloads/busybox-${BUSYBOX_VERSION}.tar.bz2
+tar -xf busybox-${BUSYBOX_VERSION}.tar.bz2
+cd busybox-${BUSYBOX_VERSION}
     cp ../config/busybox.config .config
     make -j$(nproc)
     make CONFIG_PREFIX=../initramfs install
