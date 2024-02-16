@@ -1,12 +1,10 @@
 name: Build
 
 on:
-    push:
-        branches:
-            - master
-    pull_request:
-        branches:
-            - master
+  pull_request:
+    types: [closed]
+    branches:
+      - master
 
 jobs:
     build:
