@@ -1,9 +1,11 @@
 name: Build
 
 on:
-    pull_request:
-        branches:
-            - master
+  pull_request:
+    types: [closed]
+    branches:
+      - master
+
 
 jobs:
     build:
