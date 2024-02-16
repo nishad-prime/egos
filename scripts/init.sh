@@ -7,3 +7,9 @@ dmesg -n 1
 mount -t devtmpfs none /dev
 mount -t proc none /dev
 mount -t sysfs none /sys
+
+# Start shell
+/bin/sh
+
+# Shutdown the machine when shell is exited
+poweroff -f
