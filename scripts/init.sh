@@ -1,14 +1,16 @@
 #!/bin/sh
 
+set -e
+
 # Disable Kernel Messages
 dmesg -n 1
+clear
 
 # Mount the file system
-mount -t devtmpfs none /dev
-mount -t proc none /proc
-mount -t sysfs none /sys
+mount -t devtmpfs udev /dev
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
 
-clear
 
 # Print the welcome message
 echo "Welcome to the Linux Kernel"
