@@ -27,7 +27,7 @@ sudo apt-get install -y\
 
 # Create the directory structure
 mkdir -p iso/boot/grub
-mkdir -p initramfs/{bin,sbin,etc,proc,sys,usr/{bin,sbin}}
+mkdir -p initramfs/{bin,sbin,etc,dev,proc,sys,usr/{bin,sbin}}
 
 # Download the kernel source
 wget https://www.kernel.org/pub/linux/kernel/v${LINUX_MAJOR}.x/linux-${LINUX_VERSION}.tar.xz
