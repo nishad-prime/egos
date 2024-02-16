@@ -52,7 +52,7 @@ cd ..
 # Create the initramfs
 cd initramfs
     rm linuxrc # We'll be using a init sciprt instead
-    cp scripts/init.sh init
+    cp ../scripts/init.sh init
     find . | cpio -H newc -o > ../iso/boot/initramfs.cpio
 cd ..
 
