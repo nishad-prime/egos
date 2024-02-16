@@ -56,3 +56,11 @@ sudo mount dist/boot/boot.img dist/mnt
     set -e
     sudo umount dist/mnt
 sudo rmdir dist/mnt
+
+# The image is ready to be used
+echo "  ___       ___  ___ ";
+echo " | __|__ _ / _ \/ __|";
+echo " | _|/ _\` | (_) \__ \";
+echo " |___\__, |\___/|___/";
+echo "     |___/           ";
+echo "Is Built Successfully!";
