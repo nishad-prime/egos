@@ -54,6 +54,7 @@ cd ..
 cd initramfs
     rm linuxrc # We'll be using a init sciprt instead
     cp ../scripts/init.sh init
+    sudo chmod 755 init
     find . | cpio -H newc -o > ../iso/boot/initramfs.cpio
 cd ..
 
