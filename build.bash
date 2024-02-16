@@ -22,19 +22,22 @@ sudo apt-get install -y\
     libtool\
     libpng-dev\
     libfreetype-dev\
-    git
+    git\
+    grub-common
 
-# Create the dist directory
-mkdir -p dist/boot
+# Create the directory structure
+mkdir -p iso/boot/grub
+mkdir -p initramfs/{bin,sbin,etc,proc,sys,usr/{bin,sbin}}
 
 # Download the kernel source
 wget https://www.kernel.org/pub/linux/kernel/v${LINUX_MAJOR}.x/linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}.tar.xz
 tar -xf linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}.tar.xz
 cd linux-${LINUX_MAJOR}.${LINUX_MINOR}.${LINUX_PATCH}
+    make -j$(nproc) x86_64_defconfig
     cp ../config/linux.config .config
-    make -j$(nproc)
+    make -j$(nproc) bzImage
     echo $PWD
-    cp arch/x86/boot/bzImage ../dist/boot/.
+    cp arch/x86/boot/bzImage ../iso/boot/.
 cd ..
 
 # Download the busybox source
@@ -43,19 +46,22 @@ tar -xf busybox-${BUSYBOX_MAJOR}.${BUSYBOX_MINOR}.${BUSYBOX_PATCH}.tar.bz2
 cd busybox-${BUSYBOX_MAJOR}.${BUSYBOX_MINOR}.${BUSYBOX_PATCH}
     cp ../config/busybox.config .config
     make -j$(nproc)
-    make CONFIG_PREFIX=../dist install
+    make CONFIG_PREFIX=../initramfs install
 cd ..
 
+# Create the initramfs
+sudo mount -t proc /proc initramfs/proc
+sudo mount -t sysfs /sys initramfs/sys
+sudo mount -o bind /dev initramfs/dev
+sudo mount -o bind /dev/pts initramfs/dev/pts
+cd initramfs
+    find . | cpio -H newc -o > ../iso/boot/initramfs.cpio
+
+# Install GRUB
+cp config/grub.cfg iso/boot/grub/grub.cfg
+
 # Create the bootable image
-dd if=/dev/zero of=dist/boot/boot.img bs=1M count=256
-mkfs.ext4 dist/boot/boot.img
-mkdir -p dist/mnt
-sudo mount dist/boot/boot.img dist/mnt
-    set +e
-    sudo cp -r dist/* dist/mnt/.
-    set -e
-    sudo umount dist/mnt
-sudo rmdir dist/mnt
+grub-mkrescue -o egos.iso iso
 
 # The image is ready to be used
 echo "  ___       ___  ___ ";
