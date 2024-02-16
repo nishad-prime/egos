@@ -5,7 +5,7 @@ dmesg -n 1
 
 # Mount the file system
 mount -t devtmpfs none /dev
-mount -t proc none /dev
+mount -t proc none /proc
 mount -t sysfs none /sys
 
 clear
