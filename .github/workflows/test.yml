@@ -1,0 +1,25 @@
+name: Test
+
+on:
+    push:
+        branches:
+            - feature
+    pull_request:
+        types:
+            - opened
+            - reopened
+        branches:
+            - master
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Run build
+              run: ./build.bash
