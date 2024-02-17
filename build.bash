@@ -65,9 +65,9 @@ cp config/grub.cfg iso/boot/grub/grub.cfg
 grub-mkrescue -o egos.iso iso
 
 # The image is ready to be used
-echo "  ___       ___  ___ ";
-echo " | __|__ _ / _ \/ __|";
-echo " | _|/ _\` | (_) \__ \\";
-echo " |___\__, |\___/|___/";
-echo "     |___/           ";
-echo "Is Built Successfully!";
+echo "  ___       ___  ___ "
+echo " | __|__ _ / _ \/ __|"
+echo " | _|/ _\` | (_) \__ \\"
+echo " |___\__, |\___/|___/"
+echo "     |___/           "
+echo "Is Built Successfully!"
